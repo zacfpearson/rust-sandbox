@@ -1,0 +1,9 @@
+FROM rust:slim-stretch as builder
+COPY . /rust-graphql
+WORKDIR /rust-graphql/src
+RUN cargo build
+
+FROM debian:stretch-slim as app
+COPY --from=builder /rust-graphql/target/debug/rust-graphql /src/rust-graphql
+WORKDIR /src
+CMD ["./rust-graphql"]
