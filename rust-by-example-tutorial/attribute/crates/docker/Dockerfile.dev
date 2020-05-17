@@ -3,7 +3,7 @@ COPY . /src
 WORKDIR /src
 RUN rustc main.rs
 
-FROM rust:alpine as app
+FROM alpine as app
 COPY --from=builder /src /src
 WORKDIR /src
 CMD ["ls"]

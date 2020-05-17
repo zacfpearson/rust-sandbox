@@ -3,7 +3,7 @@ COPY . /src
 WORKDIR /src
 RUN rustc --crate-type=lib rary.rs && rustc main.rs --extern rary=library.rlib
 
-FROM rust:alpine as app
+FROM alpine as app
 COPY --from=builder /src/main /src/main
 WORKDIR /src
 CMD ["./main"]
