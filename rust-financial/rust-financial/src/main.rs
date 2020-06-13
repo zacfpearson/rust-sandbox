@@ -64,8 +64,8 @@ fn main() {
 
     for year in (5..=(years_to_invest as i32)).step_by(5) {
         let total: f64 = investments.iter().map(|investment| investment.compound(365.0 * year as f64)).sum();
-        println!("amount contributed after {} year(s): {}", (year as i32), (year as f64 * contribution_per_interval / times_invested_per_year));
-        println!("total saved after {} year(s): {}", (year as i32), total);
+        println!("Amount contributed after {} year(s): {}", (year as i32), (year as f64 * contribution_per_interval / times_invested_per_year));
+        println!("Total saved after {} year(s): {}", (year as i32), total);
     }
 
 }
