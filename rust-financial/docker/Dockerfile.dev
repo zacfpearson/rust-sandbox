@@ -1,0 +1,9 @@
+FROM rust:alpine as builder
+COPY . /rust-financial
+WORKDIR /rust-financial/src
+RUN cargo build
+
+FROM alpine as app
+COPY --from=builder /rust-financial/target/debug/rust-financial /src/rust-financial
+WORKDIR /src
+CMD ["./rust-financial"]
