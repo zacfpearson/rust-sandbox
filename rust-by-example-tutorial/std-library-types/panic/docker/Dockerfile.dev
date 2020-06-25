@@ -1,0 +1,10 @@
+FROM rust:alpine as builder
+COPY . /src
+WORKDIR /src
+RUN rustc main.rs
+
+FROM alpine as app
+COPY --from=builder /src/main /src/main
+WORKDIR /src
+RUN apk add valgrind
+CMD ["valgrind","./main"]

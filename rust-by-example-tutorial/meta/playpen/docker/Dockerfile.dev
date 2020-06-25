@@ -1,0 +1,9 @@
+FROM rust:alpine as builder
+COPY . /playpen
+WORKDIR /playpen
+RUN apk add --no-cache --virtual .build-dependencies \
+        gcc \
+        musl-dev \
+        make && \
+        cargo install mdbook && mdbook build
+CMD ["mdbook","serve","-p","3000","-n","0.0.0.0"]

@@ -1,0 +1,4 @@
+FROM rust:alpine as builder
+COPY . /doccomments
+WORKDIR /doccomments/src
+CMD ["cargo", "test"]

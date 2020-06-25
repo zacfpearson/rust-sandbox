@@ -1,0 +1,4 @@
+FROM rust:alpine as builder
+COPY . /adder
+WORKDIR /adder/src
+CMD ["cargo", "test"]

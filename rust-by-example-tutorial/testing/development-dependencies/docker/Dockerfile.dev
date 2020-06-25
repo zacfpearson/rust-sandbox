@@ -1,0 +1,4 @@
+FROM rust:alpine as builder
+COPY . /development-dependencies
+WORKDIR /development-dependencies/src
+CMD ["cargo", "test"]
