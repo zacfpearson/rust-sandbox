@@ -27,5 +27,5 @@ Run `docker run --network=rust-graphql-bridge -p 8000:8000 --rm rust-graphql:dev
 Travel to `http://localhost:8000/graphiql`
 
 ## Todo
-* [ ] use alpine
+* [x] use alpine
 * [ ] build frontend

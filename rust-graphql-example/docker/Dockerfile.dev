@@ -1,9 +1,10 @@
-FROM rust:slim-stretch as builder
+FROM rust:alpine as builder
 COPY . /rust-graphql
 WORKDIR /rust-graphql/src
-RUN cargo build
+RUN apk update && apk add musl-dev && \
+    cargo build
 
-FROM debian:stretch-slim as app
+FROM alpine:latest as app
 COPY --from=builder /rust-graphql/target/debug/rust-graphql /src/rust-graphql
 WORKDIR /src
 CMD ["./rust-graphql"]
