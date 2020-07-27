@@ -1,7 +1,7 @@
 # RustGrpcStream
 
 ## Overview
-The purpsose of rust-grpc-basic is to learn how to use grpc with rust. 
+The purpsose of rust-grpc-stream is to learn how to use grpc with rust. 
 
 ## Install Dependencies
 Install docker
@@ -10,4 +10,4 @@ Install docker
 Follow README files in `grpc-client` and `grpc-server`.
 
 ## Todo
-* [x] fix warnings in `grpc-server`
+* [ ] fix warnings in `grpc-server`
