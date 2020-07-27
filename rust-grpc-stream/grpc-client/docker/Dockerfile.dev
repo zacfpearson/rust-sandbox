@@ -1,0 +1,11 @@
+FROM rust:alpine as builder
+COPY . /grpc-client
+WORKDIR /grpc-client
+RUN apk update && apk add musl-dev protobuf-dev util-linux && rustup component add rustfmt --toolchain 1.44.0-x86_64-unknown-linux-musl
+ENV PROTOC /usr/bin/protoc
+RUN cargo build
+
+FROM alpine as app
+COPY --from=builder /grpc-client/target/debug/grpc-client /src/grpc-client
+WORKDIR /src
+CMD ["./grpc-client"]
