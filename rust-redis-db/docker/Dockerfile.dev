@@ -1,0 +1,9 @@
+FROM rust:alpine as builder
+COPY . /rust-redis-db
+WORKDIR /rust-redis-db/src
+RUN apk update && apk add musl-dev && cargo build
+
+FROM alpine as app
+COPY --from=builder /rust-redis-db/target/debug/rust-redis-db /src/rust-redis-db
+WORKDIR /src
+CMD ["./rust-redis-db"]
