@@ -1,0 +1,10 @@
+FROM rust:alpine as builder
+COPY . /grrs
+WORKDIR /grrs/src
+RUN apk update && apk add musl-dev && cargo build
+
+FROM alpine as app
+COPY --from=builder grrs/target/debug/grrs /src/grrs
+COPY --from=builder grrs/src/test.txt /src/test.txt
+WORKDIR /src
+CMD ["./grrs", "foo", "test.txt"]
